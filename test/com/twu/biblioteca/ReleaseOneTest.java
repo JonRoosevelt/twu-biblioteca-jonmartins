@@ -42,15 +42,21 @@ public class ReleaseOneTest {
         var consoleOutputFirstLine = consoleOutput.substring(0, consoleOutput.indexOf("\n"));
         assertEquals(welcomeMessage, consoleOutputFirstLine);
     }
-
+    
     @Test
-    public void customer_View_A_List_Of_All_Books() {
+    public void customer_View_Author_And_Publication_Year_On_All_Books() {
         BibliotecaApp.main(new String[0]);
         var consoleOutput = getOutput().trim();
         var consoleOutputAfterClearing = consoleOutput.substring(
-                consoleOutput.indexOf("1")
+                consoleOutput.indexOf("Title")
         );
-        var listOfBooks = "1 - The Boy in the Striped Pajamas\n2 - Lord of the Rings\n3 - The Chronicles of Narnia";
-        assertEquals(listOfBooks, consoleOutputAfterClearing);
+
+        String expectedOutput;
+        expectedOutput = String.join("\n",
+                "Title........................................................................|Author........|Year|",
+                "1 - The Boy in the Striped Pajamas...........................................|John Boyne....|2006|",
+                "2 - Lord of the Rings........................................................|J.R. Tolkien..|1954|",
+                "3 - The Chronicles of Narnia - The Lion, the Witch and the Wardrobe..........|C.S. Lewis....|1950|");
+        assertEquals(expectedOutput, consoleOutputAfterClearing);
     }
 }

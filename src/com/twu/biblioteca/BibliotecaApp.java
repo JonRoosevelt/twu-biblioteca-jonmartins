@@ -2,14 +2,22 @@ package com.twu.biblioteca;
 
 import java.text.MessageFormat;
 import java.util.List;
+
 import com.twu.biblioteca.models.*;
 
 public class BibliotecaApp {
+    private final List<Book> books;
+
+    public BibliotecaApp(List<Book> books) {
+        this.books = books;
+    }
+
     public void printWelcomeMessage() {
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
     }
 
-    public void listAllBooks(List<Book> books) {
+
+    public void listAllBooks() {
         var headerOfListOfBooks = "Title........................................................................|Author........|Year|\n";
         StringBuilder listOfBooks = new StringBuilder();
         int titlePlaceHolderSize = 77;
@@ -47,5 +55,16 @@ public class BibliotecaApp {
                 title, ".".repeat(titlePlaceHolderSize - title.length() - bookNumber.length() - 3),
                 author, ".".repeat(authorPlaceHolderSize - author.length()),
                 year);
+    }
+
+    public void viewMainMenuOfOptions() {
+        System.out.println("[1] List of Books");
+    }
+
+    public void chooseMenuOption(int choice) {
+        switch (choice) {
+            case 1:
+                listAllBooks();
+        }
     }
 }
